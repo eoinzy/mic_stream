@@ -48,7 +48,7 @@ class _MicStreamExampleAppState extends State<MicStreamExampleApp>
   void initState() {
     print("Init application");
     super.initState();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     setState(() {
       initPlatformState();
     });
@@ -57,7 +57,7 @@ class _MicStreamExampleAppState extends State<MicStreamExampleApp>
   void _controlPage(int index) => setState(() => page = index);
 
   // Responsible for switching between recording / idle state
-  void _controlMicStream({Command command: Command.change}) async {
+  void _controlMicStream({Command command = Command.change}) async {
     switch (command) {
       case Command.change:
         _changeListening();
@@ -273,7 +273,7 @@ class _MicStreamExampleAppState extends State<MicStreamExampleApp>
   void dispose() {
     listener.cancel();
     controller.dispose();
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 }

@@ -1,37 +1,57 @@
-group 'com.code.aaron.micstream'
-version '1.0'
+package android
 
-buildscript {
+allprojects {
     repositories {
         google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        mavenCentral()
     }
 }
 
-rootProject.allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
 }
 
-apply plugin: 'com.android.library'
-
-android {
-    namespace "com.code.aaron.micstream"
-    compileSdkVersion 33
-
-    defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 33
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    lintOptions {
-        disable 'InvalidPackage'
-    }
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
 }
+//group 'com.code.aaron.micstream'
+//version '1.0'
+//
+//buildscript {
+//    repositories {
+//        google()
+//        jcenter()
+//    }
+//
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:3.5.0'
+//    }
+//}
+//
+//rootProject.allprojects {
+//    repositories {
+//        google()
+//        jcenter()
+//    }
+//}
+//
+//apply plugin: 'com.android.library'
+//
+//android {
+//    namespace "com.code.aaron.micstream"
+//    compileSdkVersion 33
+//
+//    defaultConfig {
+//        minSdkVersion 16
+//        targetSdkVersion 33
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//    }
+//
+//    lintOptions {
+//        disable 'InvalidPackage'
+//    }
+//}
