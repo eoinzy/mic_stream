@@ -22,12 +22,15 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    namespace "com.code.aaron.micstream"
-    compileSdkVersion 33
+    if(project.android.hasProperty("namespace")) {
+        namespace = "com.code.aaron.micstream"
+    }
+
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 33
+        minSdkVersion 21
+        targetSdkVersion 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
