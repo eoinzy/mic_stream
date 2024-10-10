@@ -1,1 +1,5 @@
 rootProject.name = 'mic_stream'
+
+//plugins {
+//    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
+//}
