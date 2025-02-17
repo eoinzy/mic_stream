@@ -1,11 +1,31 @@
-group 'com.code.aaron.micstream'
-version '1.0'
-
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
     }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
+//group 'com.code.aaron.micstream'
+//version '1.0'
+
+//
+//rootProject.allprojects {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
 
 //    subprojects {
 //        afterEvaluate { project ->
@@ -34,24 +54,29 @@ rootProject.allprojects {
 //            }
 //        }
 //    }
-}
+//}
 
-apply plugin: 'com.android.library'
-
-android {
-    if(project.android.hasProperty("namespace")) {
-        namespace = "com.code.aaron.micstream"
-    }
-
-    compileSdkVersion 34
-
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 34
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-}
+//apply plugin: 'com.android.library'
+//apply plugin: 'org.jetbrains.kotlin.android'
+//
+//android {
+//    if(project.android.hasProperty("namespace")) {
+//        namespace = "com.code.aaron.micstream"
+//    }
+//
+//    compileSdkVersion 34
+//
+//    defaultConfig {
+//        minSdkVersion 21
+//        targetSdkVersion 35
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//    }
+//
+//    lintOptions {
+//        disable 'InvalidPackage'
+//    }
+//}
+//
+//dependencies {
+//    implementation 'androidx.core:core-ktx:1.15.0'
+//}
