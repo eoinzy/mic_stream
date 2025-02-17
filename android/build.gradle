@@ -1,17 +1,6 @@
 group 'com.code.aaron.micstream'
 version '1.0'
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.0'
-    }
-}
-
 rootProject.allprojects {
     repositories {
         google()
