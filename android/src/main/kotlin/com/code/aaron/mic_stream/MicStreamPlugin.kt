@@ -16,19 +16,13 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 @TargetApi(16) // Should be unnecessary, but isn't // fix build.gradle...?
 class MicStreamPlugin : FlutterPlugin, StreamHandler, MethodCallHandler {
   /** New way of registering plugin */
-  override fun onAttachedToEngine(binding: FlutterPluginBinding) {
-    registerWith(binding.getBinaryMessenger())
-  }
+  override fun onAttachedToEngine(binding: FlutterPluginBinding) = registerWith(binding.getBinaryMessenger())
 
   /** Cleanup after connection loss to flutter */
-  override fun onDetachedFromEngine(binding: FlutterPluginBinding?) {
-    onCancel(null)
-  }
+  override fun onDetachedFromEngine(binding: FlutterPluginBinding?) = onCancel(null)
 
   /** Deprecated way of registering plugin */
-  fun registerWith(registrar: Registrar) {
-    registerWith(registrar.messenger())
-  }
+  fun registerWith(registrar: Registrar) = registerWith(registrar.messenger())
 
   private fun registerWith(messenger: BinaryMessenger) {
     val microphone: EventChannel = EventChannel(messenger, MICROPHONE_CHANNEL_NAME)
